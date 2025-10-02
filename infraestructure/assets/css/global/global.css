@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 1;
+    box-sizing: border-box;
+}
+
+.alinhar-ao-centro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.atividades {
+    text-align: center;
+    padding: 15px;
+    margin: 10px;
+}
+
+.navegacao-voltar {
+    margin: 20px;
+    font-size: 20px;
+}
+
+.navegacao-voltar a {
+    padding: 5px;
+    font-weight: bold;
+    background-color: rgb(231, 231, 231);
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.video {
+    margin: 20px;
+}
