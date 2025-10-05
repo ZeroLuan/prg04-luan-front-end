@@ -33,3 +33,27 @@
 .video {
     margin: 20px;
 }
+
+.cor-principal {
+    background-color: #4E342E;
+    color: white;
+    padding: 50px;
+}
+
+.cor-secundaria {
+    background-color: #D7CCC8;
+    color: white;
+    padding: 50px;
+}
+
+.cor-destaque {
+    background-color: #FF7043;
+    color: white;
+    padding: 50px;
+}
+
+.cor-de-apoio {
+    background-color: #8D6E63;
+    color: white;
+    padding: 50px;
+}
