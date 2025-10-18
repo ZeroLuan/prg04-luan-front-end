@@ -1,0 +1,75 @@
+/* Estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    border: 1;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFFBF5;
+    color: #2C2416;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+ul {
+  list-style-type: none; /* Remove as bolinhas */
+}
+
+/* Classes utilitárias */
+
+.alinhar-ao-centro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.atividades {
+    text-align: center;
+    padding: 15px;
+    margin: 10px;
+}
+
+.recipiente {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Navegação Voltar */
+
+.navegacao-voltar {
+    margin-bottom: 2rem;
+}
+
+.navegacao-voltar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #C9941A;
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(201, 148, 26, 0.3);
+}
+
+.navegacao-voltar a:hover {
+    background-color: #D4A017;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(201, 148, 26, 0.4);
+}
+
+.navegacao-voltar a::before {
+    content: "←";
+    font-size: 1.2rem;
+}
+
+/* Estilos para vídeos */
+
+.video {
+    margin: 20px;
+}
