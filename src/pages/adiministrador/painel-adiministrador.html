@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang=pt-BR>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/assets/css/global/global.css">
+    <link rel="stylesheet" href="painel-administrador.css">
+    <link rel="icon" href="/src/public/favicon.ico">
+    <title>Painel de Administração</title>
+</head>
+<body>
+    <!-- Header do Painel -->
+    <header class="painel-header">
+        <div class="header-content">
+            <h1>Painel de Administração</h1>
+            <div class="user-info">
+                <span id="nomeUsuario">Admin</span>
+                <button id="btnSair" class="btn-sair">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="painel-main">
+        <div class="painel-container">
+            <!-- Cabeçalho da Seção -->
+            <div class="secao-header">
+                <h2>Gerenciamento de Usuários</h2>
+                <button id="btnAdicionar" class="btn-adicionar">+ Adicionar Usuário</button>
+            </div>
+
+            <!-- Tabela de Usuários -->
+            <div class="tabela-container">
+                <table class="tabela-usuarios">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th class="acoes-th">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaUsuarios">
+                        <!-- Os usuários serão inseridos aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mensagem quando não há usuários -->
+            <div id="mensagemVazia" class="mensagem-vazia" style="display: none;">
+                <p>Nenhum usuário cadastrado. Clique em "Adicionar Usuário" para começar.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para Adicionar/Editar Usuário -->
+    <div id="modalUsuario" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitulo">Adicionar Usuário</h3>
+                <button class="btn-fechar" id="btnFecharModal">&times;</button>
+            </div>
+            <form id="formUsuario" class="form-usuario">
+                <input type="hidden" id="usuarioId">
+                
+                <div class="input-group">
+                    <label for="usuarioNome">Nome Completo:</label>
+                    <input type="text" id="usuarioNome" placeholder="Digite o nome completo" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="usuarioEmail">Email:</label>
+                    <input type="email" id="usuarioEmail" placeholder="Digite o email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="usuarioTelefone">Telefone:</label>
+                    <input type="tel" id="usuarioTelefone" placeholder="(00) 00000-0000" required>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-salvar">Salvar</button>
+                    <button type="button" class="btn-cancelar" id="btnCancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div id="modalConfirmacao" class="modal">
+        <div class="modal-content modal-confirmacao">
+            <div class="modal-header">
+                <h3>Confirmar Exclusão</h3>
+                <button class="btn-fechar" id="btnFecharConfirmacao">&times;</button>
+            </div>
+            <div class="confirmacao-body">
+                <p>Tem certeza que deseja excluir este usuário?</p>
+                <p class="usuario-info" id="usuarioParaExcluir"></p>
+            </div>
+            <div class="confirmacao-buttons">
+                <button class="btn-confirmar" id="btnConfirmarExclusao">Sim, Excluir</button>
+                <button class="btn-cancelar" id="btnCancelarExclusao">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="painel-administrador.js"></script>
+</body>
+</html>

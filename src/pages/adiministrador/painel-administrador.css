@@ -1,0 +1,517 @@
+/* ===================================
+   MOBILE FIRST - Estilos Base (Mobile)
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header do Painel */
+.painel-header {
+    background: linear-gradient(135deg, #C9941A 0%, #D4A017 100%);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.header-content h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-info span {
+    font-size: 0.875rem;
+}
+
+.btn-sair {
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.btn-sair:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Container Principal */
+.painel-main {
+    padding: 1rem;
+}
+
+.painel-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho da Seção */
+.secao-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.secao-header h2 {
+    font-size: 1.5rem;
+    color: #2C2416;
+}
+
+.btn-adicionar {
+    padding: 0.75rem 1.25rem;
+    background-color: #C9941A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-adicionar:hover {
+    background-color: #D4A017;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(201, 148, 26, 0.3);
+}
+
+/* Tabela de Usuários */
+.tabela-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabela-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.tabela-usuarios thead {
+    background-color: #f8f8f8;
+}
+
+.tabela-usuarios th {
+    padding: 0.875rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: #2C2416;
+    font-size: 0.875rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.tabela-usuarios td {
+    padding: 1rem 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.875rem;
+    color: #333;
+}
+
+.tabela-usuarios tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.tabela-usuarios tbody tr:hover {
+    background-color: #fafafa;
+}
+
+/* Ações da Tabela */
+.acoes-cell {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-editar,
+.btn-excluir {
+    padding: 0.5rem 0.875rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-editar {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-editar:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.btn-excluir {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-excluir:hover {
+    background-color: #da190b;
+    transform: translateY(-1px);
+}
+
+/* Mensagem Vazia */
+.mensagem-vazia {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #999;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mensagem-vazia p {
+    font-size: 1rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.modal.ativo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin: auto;
+}
+
+.modal-confirmacao {
+    max-width: 400px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h3 {
+    font-size: 1.25rem;
+    color: #2C2416;
+}
+
+.btn-fechar {
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.btn-fechar:hover {
+    color: #333;
+}
+
+/* Formulário no Modal */
+.form-usuario {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.875rem;
+    color: #2C2416;
+    font-weight: 500;
+}
+
+.input-group input {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #C9941A;
+    box-shadow: 0 0 0 3px rgba(201, 148, 26, 0.1);
+}
+
+/* Botões do Formulário */
+.form-buttons,
+.confirmacao-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.btn-salvar,
+.btn-confirmar,
+.btn-cancelar {
+    padding: 0.875rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-salvar {
+    background-color: #C9941A;
+    color: white;
+}
+
+.btn-salvar:hover {
+    background-color: #D4A017;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(201, 148, 26, 0.3);
+}
+
+.btn-confirmar {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-confirmar:hover {
+    background-color: #da190b;
+    transform: translateY(-2px);
+}
+
+.btn-cancelar {
+    background-color: #f5f5f5;
+    color: #666;
+}
+
+.btn-cancelar:hover {
+    background-color: #e0e0e0;
+}
+
+/* Modal de Confirmação */
+.confirmacao-body {
+    padding: 1.5rem;
+}
+
+.confirmacao-body p {
+    margin-bottom: 0.75rem;
+    color: #333;
+}
+
+.usuario-info {
+    font-weight: 600;
+    color: #2C2416;
+}
+
+.confirmacao-buttons {
+    padding: 0 1.5rem 1.5rem;
+}
+
+/* ===================================
+   TABLET - Media Query (768px+)
+   =================================== */
+
+@media (min-width: 768px) {
+    .painel-header {
+        padding: 1.25rem 2rem;
+    }
+
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .header-content h1 {
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    .user-info span {
+        font-size: 1rem;
+    }
+
+    .painel-main {
+        padding: 2rem;
+    }
+
+    .secao-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .secao-header h2 {
+        font-size: 1.75rem;
+    }
+
+    .btn-adicionar {
+        width: auto;
+        min-width: 200px;
+    }
+
+    .tabela-usuarios th,
+    .tabela-usuarios td {
+        padding: 1rem 1.25rem;
+        font-size: 0.9375rem;
+    }
+
+    .btn-editar,
+    .btn-excluir {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .form-buttons,
+    .confirmacao-buttons {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .btn-salvar,
+    .btn-confirmar,
+    .btn-cancelar {
+        flex: 0 1 auto;
+        min-width: 120px;
+    }
+
+    .modal {
+        padding: 2rem;
+    }
+
+    .modal-header h3 {
+        font-size: 1.5rem;
+    }
+
+    .form-usuario {
+        padding: 1.5rem;
+    }
+}
+
+/* ===================================
+   DESKTOP - Media Query (1024px+)
+   =================================== */
+
+@media (min-width: 1024px) {
+    .painel-header {
+        padding: 1.5rem 3rem;
+    }
+
+    .header-content h1 {
+        font-size: 1.75rem;
+    }
+
+    .painel-main {
+        padding: 2.5rem 3rem;
+    }
+
+    .secao-header h2 {
+        font-size: 2rem;
+    }
+
+    .tabela-container {
+        overflow-x: visible;
+    }
+
+    .tabela-usuarios {
+        min-width: auto;
+    }
+
+    .tabela-usuarios th,
+    .tabela-usuarios td {
+        padding: 1.25rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .acoes-th {
+        text-align: center;
+    }
+
+    .acoes-cell {
+        justify-content: center;
+    }
+
+    .mensagem-vazia p {
+        font-size: 1.125rem;
+    }
+}
+
+/* ===================================
+   LARGE DESKTOP - Media Query (1440px+)
+   =================================== */
+
+@media (min-width: 1440px) {
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .secao-header h2 {
+        font-size: 2.25rem;
+    }
+
+    .tabela-usuarios th,
+    .tabela-usuarios td {
+        padding: 1.5rem 2rem;
+    }
+}

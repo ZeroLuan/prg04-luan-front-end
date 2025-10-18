@@ -1,0 +1,42 @@
+<section>
+    <section class="atividades atividade-3">
+        
+        <h1>Atividade 3</h1>
+
+        <a href="./atividades/atividade-3/atividade-3.html">Clique aqui para ver a atividade 3</a>
+
+    </section>
+    <hr>
+    <section class="atividades atividade-4">
+        
+        <h1>Atividade 4</h1>
+
+        <a href="./atividades/atividade-4/atividade-4.html">Clique aqui para ver a atividade 4</a>
+        
+    </section>
+    <hr>
+    <section class="atividades atividade-5">
+
+        <h1>Atividade 5</h1>
+
+        <a href="./atividades/atividade-5/atividade-5.html">Clique aqui para ver a atividade 5</a>
+
+    </section>
+    <hr>
+    <section class="atividades atividade-6">
+
+        <h1>Atividade 6</h1>
+
+        <p>É possivel ver a atividade 6 nessa tela inicial !</p>
+
+    </section>
+    <hr>
+    <section class="atividades atividade-7">
+
+        <h1>Atividade 7</h1>
+
+        <p>É possivel ver a atividade 7 nessa tela inicial !</p>
+
+    </section>
+    <hr>
+</section>
