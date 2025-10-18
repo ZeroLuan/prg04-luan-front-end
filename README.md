@@ -1,58 +1,68 @@
 # PRG04-LUAN-FRONT-END
 
-Este projeto foi estruturado para organizar os arquivos de forma clara e escalável, pensando em boas práticas que facilitam a manutenção e futura evolução para frameworks modernos como **React** ou **Vue.js**.
+Projeto front-end estático organizado para facilitar manutenção, reuso de componentes e futura migração para frameworks como React/Vue.
 
----
+Principais objetivos:
 
-## Estrutura de Pastas
+- Organização clara dos recursos (assets, components, pages);
+- Facilitar a inclusão de header/footer reutilizáveis;
+- Documentação simples para desenvolvedores e colaboradores.
 
-### 📂 `infraestructure`
+## Como ver o projeto localmente
 
-Contém os arquivos globais e recursos compartilhados do projeto.
+Você pode abrir as páginas diretamente no navegador (ex.: `src/pages/index.html`), porém algumas funcionalidades de include por fetch podem precisar de um servidor estático. Uma opção rápida com Python (PowerShell):
 
-* **assets/**: Diretório principal de recursos.
+```powershell
+python -m http.server 8000
+# depois abra http://localhost:8000/src/pages/index.html
+```
 
-  * **css/global/**: Arquivos de estilo globais que podem ser reutilizados em várias páginas.
-  * **fonts/**: Fontes personalizadas usadas no projeto.
-  * **images/**: Imagens de uso geral do site (exemplo: `globo.ico`).
-  * **js/**: Scripts JavaScript de uso global.
-* **pages/**: Páginas principais e públicas do projeto.
+Ou use qualquer servidor estático de sua preferência (Live Server, http-server, etc.).
 
-  * **about/** e **contact/**: Diretórios dedicados a páginas específicas.
-  * **atividade-3.html**: Página referente a uma atividade prática.
-  * **index.html**: Página inicial do projeto.
+## Estrutura resumida
 
----
+Nota: este projeto separa recursos por responsabilidade. Exemplo simplificado:
 
-### 📂 `usuario`
+- `src/assets/` — imagens, fontes e CSS globais
+- `src/components/` — header, footer e outros componentes reutilizáveis
+- `src/pages/` — páginas públicas (index, atividades, administrador, etc.)
+- `src/components/common/` — pequenos componentes reutilizáveis (botões, inputs)
 
-Diretório que representa uma **área de usuário**, isolando os arquivos relacionados a funcionalidades específicas.
+Exemplo (trecho):
 
-* **assets/**: Recursos específicos da área de usuário.
+```
+src/
+  assets/
+    css/global/
+  components/
+    header/
+    footer/
+    common/
+  pages/
+    index.html
+    atividades/
+```
 
-  * **css/**: Estilos exclusivos da parte de usuário.
-  * **images/**: Imagens próprias dessa seção.
-  * **js/**: Scripts focados em funcionalidades do usuário.
-* **pages/**: Páginas referentes à área do usuário.
-* **components/**: Componentes reutilizáveis (botões, cards, formulários, etc.).
+## Convenções e boas práticas
 
----
+- Nomeie arquivos CSS/JS relacionados a um componente com o prefixo do componente (ex.: `header.css`, `header.js`).
+- Mantenha estilos globais em `assets/css/global/` e evite regras muito específicas lá.
+- Componentes devem ser autônomos: HTML + (opcional) CSS + (opcional) JS.
 
-## Vantagens da Arquitetura
+## Inclusão de componentes
 
-✔ **Organização clara**: separa o que é global do que é específico do usuário.
-✔ **Escalabilidade**: fácil adaptação para frameworks modernos (React, Vue.js, Angular).
-✔ **Reuso**: os diretórios `assets` e `components` incentivam a reutilização de código.
-✔ **Manutenção simplificada**: facilita encontrar e atualizar arquivos específicos.
+O projeto já possui um loader simples de componentes em `src/components/js/components.js` que faz include do header e footer automaticamente ao carregar a página. Consulte `COMPONENTS.md` para exemplos de uso (fetch, include via JS e SSI).
 
----
+## Próximos passos sugeridos
 
-## Próximos Passos
+1. Padronizar a nomenclatura de arquivos e classes CSS (BEM ou outra convenção).
+2. Criar testes visuais ou snapshots para componentes importantes.
+3. Adicionar um pequeno script de build (opcional) para minificação/concatenação.
 
-* Criar um padrão de nomenclatura consistente para arquivos CSS e JS.
-* Estruturar os **components** de forma modular para futura migração para React ou Vue.
-* Documentar dependências externas (bibliotecas, frameworks, etc.) conforme forem adicionadas.
+## Como contribuir
 
----
+- Abra um branch com nome claro (`feature/nome-da-funcionalidade`)
+- Faça commits pequenos e descritivos
+- Adicione descrições nos PRs explicando o propósito das mudanças
 
-📌 Este `README.md` serve como guia inicial para entender a organização do projeto e facilitar contribuições futuras.
+Obrigado — qualquer dúvida sobre a estrutura, posso documentar mais exemplos de componentes e flows.
