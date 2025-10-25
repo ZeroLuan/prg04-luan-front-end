@@ -1,4 +1,4 @@
-alert("As atividades estão no icone flutuante no canto inferior direito.");
+
 
 // Função para carregar componentes HTML
 async function loadComponent(componentPath, targetSelector) {

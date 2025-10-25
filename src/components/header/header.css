@@ -2,9 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     color: #2C2416;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 7px 9px rgba(0, 0, 7, 0.2);
 }
 
 /* Logo e texto lado a lado */
@@ -27,7 +27,12 @@
 
 .navbar p {
     font-size: 0.9rem;
-    opacity: 0.8;
+}
+
+.navbar a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2C2416;
 }
 
 .navbar-links ul {

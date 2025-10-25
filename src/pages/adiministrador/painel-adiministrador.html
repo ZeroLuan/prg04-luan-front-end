@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang=pt-BR>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/src/assets/css/global/bootstrap-custom.css">
     <link rel="stylesheet" href="/src/assets/css/global/global.css">
     <link rel="stylesheet" href="painel-administrador.css">
     <link rel="icon" href="/src/public/favicon.ico">
@@ -10,101 +16,147 @@
 </head>
 <body>
     <!-- Header do Painel -->
-    <header class="painel-header">
-        <div class="header-content">
-            <h1>Painel de Administração</h1>
-            <div class="user-info">
-                <span id="nomeUsuario">Admin</span>
-                <button id="btnSair" class="btn-sair">Sair</button>
+    <header class="navbar navbar-dark bg-primary shadow-sm">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <i class="bi bi-speedometer2"></i> Painel de Administração
+            </span>
+            <div class="d-flex align-items-center">
+                <span class="text-white me-3" id="nomeUsuario">
+                    <i class="bi bi-person-circle"></i> Admin
+                </span>
+                <button id="btnSair" class="btn btn-outline-light btn-sm">
+                    <i class="bi bi-box-arrow-right"></i> Sair
+                </button>
             </div>
         </div>
     </header>
 
     <!-- Conteúdo Principal -->
-    <main class="painel-main">
-        <div class="painel-container">
-            <!-- Cabeçalho da Seção -->
-            <div class="secao-header">
-                <h2>Gerenciamento de Usuários</h2>
-                <button id="btnAdicionar" class="btn-adicionar">+ Adicionar Usuário</button>
-            </div>
+    <main class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <!-- Cabeçalho da Seção -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="h3 mb-0">
+                        <i class="bi bi-people"></i> Gerenciamento de Usuários
+                    </h2>
+                    <button id="btnAdicionar" class="btn btn-success">
+                        <i class="bi bi-plus-circle"></i> Adicionar Usuário
+                    </button>
+                </div>
 
-            <!-- Tabela de Usuários -->
-            <div class="tabela-container">
-                <table class="tabela-usuarios">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Telefone</th>
-                            <th class="acoes-th">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabelaUsuarios">
-                        <!-- Os usuários serão inseridos aqui via JavaScript -->
-                    </tbody>
-                </table>
-            </div>
+                <!-- Tabela de Usuários -->
+                <div class="card shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped mb-0">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Telefone</th>
+                                        <th scope="col" class="text-center">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaUsuarios">
+                                    <!-- Os usuários serão inseridos aqui via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Mensagem quando não há usuários -->
-            <div id="mensagemVazia" class="mensagem-vazia" style="display: none;">
-                <p>Nenhum usuário cadastrado. Clique em "Adicionar Usuário" para começar.</p>
+                <!-- Mensagem quando não há usuários -->
+                <div id="mensagemVazia" class="alert alert-info text-center mt-4" role="alert" style="display: none;">
+                    <i class="bi bi-info-circle fs-3"></i>
+                    <p class="mb-0 mt-2">Nenhum usuário cadastrado. Clique em "Adicionar Usuário" para começar.</p>
+                </div>
             </div>
         </div>
     </main>
 
     <!-- Modal para Adicionar/Editar Usuário -->
-    <div id="modalUsuario" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitulo">Adicionar Usuário</h3>
-                <button class="btn-fechar" id="btnFecharModal">&times;</button>
+    <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="modalTitulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="modalTitulo">
+                        <i class="bi bi-person-plus"></i> Adicionar Usuário
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formUsuario">
+                        <input type="hidden" id="usuarioId">
+                        
+                        <div class="mb-3">
+                            <label for="usuarioNome" class="form-label">
+                                <i class="bi bi-person"></i> Nome Completo
+                            </label>
+                            <input type="text" class="form-control" id="usuarioNome" placeholder="Digite o nome completo" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="usuarioEmail" class="form-label">
+                                <i class="bi bi-envelope"></i> Email
+                            </label>
+                            <input type="email" class="form-control" id="usuarioEmail" placeholder="Digite o email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="usuarioTelefone" class="form-label">
+                                <i class="bi bi-telephone"></i> Telefone
+                            </label>
+                            <input type="tel" class="form-control" id="usuarioTelefone" placeholder="(00) 00000-0000" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </button>
+                    <button type="submit" form="formUsuario" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i> Salvar
+                    </button>
+                </div>
             </div>
-            <form id="formUsuario" class="form-usuario">
-                <input type="hidden" id="usuarioId">
-                
-                <div class="input-group">
-                    <label for="usuarioNome">Nome Completo:</label>
-                    <input type="text" id="usuarioNome" placeholder="Digite o nome completo" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="usuarioEmail">Email:</label>
-                    <input type="email" id="usuarioEmail" placeholder="Digite o email" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="usuarioTelefone">Telefone:</label>
-                    <input type="tel" id="usuarioTelefone" placeholder="(00) 00000-0000" required>
-                </div>
-
-                <div class="form-buttons">
-                    <button type="submit" class="btn-salvar">Salvar</button>
-                    <button type="button" class="btn-cancelar" id="btnCancelar">Cancelar</button>
-                </div>
-            </form>
         </div>
     </div>
 
     <!-- Modal de Confirmação de Exclusão -->
-    <div id="modalConfirmacao" class="modal">
-        <div class="modal-content modal-confirmacao">
-            <div class="modal-header">
-                <h3>Confirmar Exclusão</h3>
-                <button class="btn-fechar" id="btnFecharConfirmacao">&times;</button>
-            </div>
-            <div class="confirmacao-body">
-                <p>Tem certeza que deseja excluir este usuário?</p>
-                <p class="usuario-info" id="usuarioParaExcluir"></p>
-            </div>
-            <div class="confirmacao-buttons">
-                <button class="btn-confirmar" id="btnConfirmarExclusao">Sim, Excluir</button>
-                <button class="btn-cancelar" id="btnCancelarExclusao">Cancelar</button>
+    <div class="modal fade" id="modalConfirmacao" tabindex="-1" aria-labelledby="modalConfirmacaoTitulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="modalConfirmacaoTitulo">
+                        <i class="bi bi-exclamation-triangle"></i> Confirmar Exclusão
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="bi bi-trash fs-1 text-danger mb-3"></i>
+                    <p class="fw-bold">Tem certeza que deseja excluir este usuário?</p>
+                    <p class="text-muted" id="usuarioParaExcluir"></p>
+                    <div class="alert alert-warning" role="alert">
+                        <small><i class="bi bi-info-circle"></i> Esta ação não pode ser desfeita!</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </button>
+                    <button type="button" class="btn btn-danger" id="btnConfirmarExclusao">
+                        <i class="bi bi-trash"></i> Sim, Excluir
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="painel-administrador.js"></script>
 </body>
 </html>

@@ -7,6 +7,8 @@ class GerenciadorUsuarios {
         this.usuarios = this.carregarUsuarios();
         this.usuarioEditandoId = null;
         this.usuarioExcluindoId = null;
+        this.modalUsuario = null;
+        this.modalConfirmacao = null;
         this.inicializar();
     }
 
@@ -35,9 +37,16 @@ class GerenciadorUsuarios {
     // Inicializa os event listeners e renderiza a tabela
     inicializar() {
         this.verificarAutenticacao();
+        this.inicializarModals();
         this.configurarEventListeners();
         this.renderizarTabela();
         this.exibirNomeUsuario();
+    }
+
+    // Inicializa os modais do Bootstrap
+    inicializarModals() {
+        this.modalUsuario = new bootstrap.Modal(document.getElementById('modalUsuario'));
+        this.modalConfirmacao = new bootstrap.Modal(document.getElementById('modalConfirmacao'));
     }
 
     // Verifica se o usuário está autenticado
@@ -53,7 +62,7 @@ class GerenciadorUsuarios {
         const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado') || '{}');
         const nomeElement = document.getElementById('nomeUsuario');
         if (nomeElement && usuarioLogado.nome) {
-            nomeElement.textContent = usuarioLogado.nome;
+            nomeElement.innerHTML = `<i class="bi bi-person-circle"></i> ${usuarioLogado.nome}`;
         }
     }
 
@@ -68,21 +77,8 @@ class GerenciadorUsuarios {
         // Formulário de Usuário
         document.getElementById('formUsuario').addEventListener('submit', (e) => this.salvarUsuario(e));
 
-        // Botões de Fechar Modal
-        document.getElementById('btnFecharModal').addEventListener('click', () => this.fecharModal('modalUsuario'));
-        document.getElementById('btnCancelar').addEventListener('click', () => this.fecharModal('modalUsuario'));
-
-        // Modal de Confirmação
-        document.getElementById('btnFecharConfirmacao').addEventListener('click', () => this.fecharModal('modalConfirmacao'));
-        document.getElementById('btnCancelarExclusao').addEventListener('click', () => this.fecharModal('modalConfirmacao'));
+        // Botão de Confirmar Exclusão
         document.getElementById('btnConfirmarExclusao').addEventListener('click', () => this.confirmarExclusao());
-
-        // Fechar modal ao clicar fora
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                this.fecharModal(e.target.id);
-            }
-        });
     }
 
     // Renderiza a tabela de usuários
@@ -104,15 +100,13 @@ class GerenciadorUsuarios {
                 <td>${usuario.nome}</td>
                 <td>${usuario.email}</td>
                 <td>${usuario.telefone}</td>
-                <td>
-                    <div class="acoes-cell">
-                        <button class="btn-editar" onclick="gerenciador.abrirModalEditar(${usuario.id})">
-                            ✏️ Editar
-                        </button>
-                        <button class="btn-excluir" onclick="gerenciador.abrirModalExcluir(${usuario.id})">
-                            🗑️ Excluir
-                        </button>
-                    </div>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-warning me-2" onclick="gerenciador.abrirModalEditar(${usuario.id})">
+                        <i class="bi bi-pencil"></i> Editar
+                    </button>
+                    <button class="btn btn-sm btn-danger" onclick="gerenciador.abrirModalExcluir(${usuario.id})">
+                        <i class="bi bi-trash"></i> Excluir
+                    </button>
                 </td>
             </tr>
         `).join('');
@@ -121,10 +115,10 @@ class GerenciadorUsuarios {
     // Abre modal para adicionar usuário
     abrirModalAdicionar() {
         this.usuarioEditandoId = null;
-        document.getElementById('modalTitulo').textContent = 'Adicionar Usuário';
+        document.getElementById('modalTitulo').innerHTML = '<i class="bi bi-person-plus"></i> Adicionar Usuário';
         document.getElementById('formUsuario').reset();
         document.getElementById('usuarioId').value = '';
-        this.abrirModal('modalUsuario');
+        this.modalUsuario.show();
     }
 
     // Abre modal para editar usuário
@@ -133,12 +127,12 @@ class GerenciadorUsuarios {
         const usuario = this.usuarios.find(u => u.id === id);
         
         if (usuario) {
-            document.getElementById('modalTitulo').textContent = 'Editar Usuário';
+            document.getElementById('modalTitulo').innerHTML = '<i class="bi bi-pencil"></i> Editar Usuário';
             document.getElementById('usuarioId').value = usuario.id;
             document.getElementById('usuarioNome').value = usuario.nome;
             document.getElementById('usuarioEmail').value = usuario.email;
             document.getElementById('usuarioTelefone').value = usuario.telefone;
-            this.abrirModal('modalUsuario');
+            this.modalUsuario.show();
         }
     }
 
@@ -167,7 +161,7 @@ class GerenciadorUsuarios {
 
         this.salvarUsuarios();
         this.renderizarTabela();
-        this.fecharModal('modalUsuario');
+        this.modalUsuario.hide();
     }
 
     // Abre modal de confirmação de exclusão
@@ -176,9 +170,9 @@ class GerenciadorUsuarios {
         const usuario = this.usuarios.find(u => u.id === id);
         
         if (usuario) {
-            document.getElementById('usuarioParaExcluir').textContent = 
-                `${usuario.nome} (${usuario.email})`;
-            this.abrirModal('modalConfirmacao');
+            document.getElementById('usuarioParaExcluir').innerHTML = 
+                `<strong>${usuario.nome}</strong><br><small>${usuario.email}</small>`;
+            this.modalConfirmacao.show();
         }
     }
 
@@ -189,22 +183,8 @@ class GerenciadorUsuarios {
             this.salvarUsuarios();
             this.renderizarTabela();
             this.usuarioExcluindoId = null;
-            this.fecharModal('modalConfirmacao');
+            this.modalConfirmacao.hide();
         }
-    }
-
-    // Abre modal
-    abrirModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.classList.add('ativo');
-        document.body.style.overflow = 'hidden';
-    }
-
-    // Fecha modal
-    fecharModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.classList.remove('ativo');
-        document.body.style.overflow = 'auto';
     }
 
     // Sair do sistema
