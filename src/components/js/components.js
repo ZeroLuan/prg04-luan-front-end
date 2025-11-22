@@ -34,7 +34,7 @@ async function includeFooter() {
 }
 
 // Função genérica para processar elementos com atributo `data-include`
-// Exemplo: <div data-include="/src/components/common/botao/botao-voltar.html"></div>
+// Exemplo: <div data-include="../../../components/common/botao/botao-voltar.html"></div>
 async function processIncludes() {
     const includeEls = document.querySelectorAll('[data-include]');
     await Promise.all(Array.from(includeEls).map(async (el) => {
@@ -54,20 +54,9 @@ async function processIncludes() {
 
 // Executa quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', async function() {
-    // Primeiro processa placeholders `data-include` (permite que páginas escolham onde o header/footer vai)
+    // Processa placeholders `data-include` (permite que páginas escolham onde componentes específicos vão)
     await processIncludes();
 
-    // Só insere header/footer automaticamente na página inicial (index)
-    // Isso evita que o header seja adicionado em páginas de atividade que só querem componentes específicos.
-    const path = window.location.pathname || '';
-    const isIndex = path.endsWith('/src/pages/index.html') || path.endsWith('/index.html') || path === '/';
-
-    if (isIndex) {
-        if (!document.querySelector('header.navbar')) {
-            await includeHeader();
-        }
-        if (!document.querySelector('footer.footer')) {
-            await includeFooter();
-        }
-    }
+    // Header e footer agora são incluídos diretamente no HTML das páginas principais
+    // Não há mais inclusão automática via JavaScript
 });

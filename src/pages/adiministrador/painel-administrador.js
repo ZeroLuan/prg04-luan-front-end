@@ -53,7 +53,7 @@ class GerenciadorUsuarios {
     verificarAutenticacao() {
         const usuarioLogado = sessionStorage.getItem('usuarioLogado');
         if (!usuarioLogado) {
-            window.location.href = '/src/pages/autenticacao/autenticacao.html';
+            window.location.href = '../autenticacao/autenticacao.html';
         }
     }
 
@@ -190,7 +190,7 @@ class GerenciadorUsuarios {
     // Sair do sistema
     sair() {
         sessionStorage.removeItem('usuarioLogado');
-        window.location.href = '/src/pages/autenticacao/autenticacao.html';
+        window.location.href = '../autenticacao/autenticacao.html';
     }
 }
 

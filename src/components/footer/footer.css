@@ -1,3 +1,21 @@
-.footer {
-    background-color: #F5EFE6;
+/* Footer customizado para trabalhar com Bootstrap */
+footer {
+    margin-top: auto;
+}
+
+.footer-links a:hover {
+    color: #FF7043 !important;
+    text-decoration: underline;
+}
+
+/* Responsividade adicional */
+@media (max-width: 768px) {
+    footer .col-lg-4 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    footer .d-flex {
+        justify-content: center;
+    }
 }

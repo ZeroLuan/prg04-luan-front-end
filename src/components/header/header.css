@@ -1,90 +1,43 @@
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 2rem;
-    color: #2C2416;
-    box-shadow: 0 7px 9px rgba(0, 0, 7, 0.2);
-}
-
-/* Logo e texto lado a lado */
-.navbar div:first-child {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.navbar img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.navbar h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.navbar p {
-    font-size: 0.9rem;
-}
-
-.navbar a {
+/* Header customizado para trabalhar com Bootstrap */
+.navbar-brand h5 {
     font-size: 1.2rem;
-    font-weight: bold;
-    color: #2C2416;
+    margin-bottom: 0.1rem;
 }
 
-.navbar-links ul {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
+.navbar-brand small {
+    font-size: 0.75rem;
+    line-height: 1;
 }
 
-.navbar-links a {
-    text-decoration: none;
-    color: #2C2416;
+.navbar-nav .nav-link {
     font-weight: 500;
+    color: #2C2416 !important;
     transition: color 0.3s ease;
 }
 
-.navbar-links a:hover {
-    color: #FF7043;
+.navbar-nav .nav-link:hover {
+    color: #FF7043 !important;
 }
 
-.navbar button {
+.navbar .btn-primary {
     background-color: #C9941A;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-color: #C9941A;
+    font-weight: 600;
 }
 
-.navbar button:hover {
+.navbar .btn-primary:hover {
     background-color: #f3b524;
+    border-color: #f3b524;
 }
 
-.navbar button a {
-    color: white;
-    text-decoration: none;
-}
+/* Responsividade adicional */
+@media (max-width: 991.98px) {
+    .navbar-brand h5 {
+        font-size: 1rem;
+    }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .navbar img {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .navbar-links ul {
-        gap: 1rem;
+    .navbar-collapse {
+        text-align: center;
+        margin-top: 1rem;
     }
 }
